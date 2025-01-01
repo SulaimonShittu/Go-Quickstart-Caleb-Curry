@@ -4,9 +4,11 @@ import (
 	"bufio"
 	"fmt"
 	"math"
+	"math/rand"
 	"os"
 	"strconv"
 	"strings"
+	"time"
 )
 
 func main() {
@@ -231,7 +233,24 @@ func main() {
 			fmt.Println("You didn't enter a number, Try again.")
 			continue
 		}
-		fmt.Printf("You successfully entered a num : %v", numval)
+		fmt.Printf("You successfully entered a num : %v\n", numval)
 		break
 	}
+
+	// Understanding panics
+	tstarr := [...]int{80, 90, 45}
+	rand.Seed(time.Now().UnixNano())
+	ari := rand.Intn(100) + 3
+	fmt.Println("Before panic")
+
+	defer func() {
+		if r := recover(); r != nil {
+			fmt.Println("A panic has occurred. This function recovers it")
+		}
+	}()
+
+	fmt.Println(tstarr[ari])
+
+	//
+
 }
