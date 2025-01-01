@@ -169,6 +169,7 @@ func main() {
 	mbr, _ := strconv.ParseInt(input, 10, 64)
 	println(mbr, prizes[mbr])
 
+	fmt.Print("just enter your prize number : ")
 	var mbr2 int
 	fmt.Scan(&mbr2)
 
@@ -211,5 +212,26 @@ func main() {
 	}
 	for i := 0; i <= 2; i++ {
 		fmt.Print(i, "\t")
+	}
+	fmt.Print("\n")
+
+	//error handling
+	var numval int64
+	for {
+		fmt.Println("Please enter a valid number only")
+		value, err := readinput.ReadString('\n')
+		if err != nil {
+			fmt.Println("Something went wrong with your input.")
+			continue
+		}
+
+		value = strings.TrimSpace(value)
+		numval, err = strconv.ParseInt(value, 10, 64)
+		if err != nil {
+			fmt.Println("You didn't enter a number, Try again.")
+			continue
+		}
+		fmt.Printf("You successfully entered a num : %v", numval)
+		break
 	}
 }
