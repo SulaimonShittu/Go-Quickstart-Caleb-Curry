@@ -236,7 +236,29 @@ func main() {
 		fmt.Printf("You successfully entered a num : %v\n", numval)
 		break
 	}
+	// Understanding panics
+	panix()
 
+	//Maps
+	message := `In an ancient world, where skies shimmered purple, a purple young girl named Elara lived.
+				She discovered an ancient purple map, hidden in her purple attic, leading to an unknown treasure.
+				Brimming with excitement, Elara embarked on her journey, accompanied by her loyal dog, Max.`
+
+	//wordcount := make(map[string]int)
+	messagewords := strings.Split(message, " ")
+	for k := 0; k < len(messagewords); k++ {
+		messagewords[k] = strings.ToLower(messagewords[k])
+		messagewords[k] = strings.ReplaceAll(messagewords[k], " ", "")
+		messagewords[k] = strings.ReplaceAll(messagewords[k], "\t", "")
+		messagewords[k] = strings.ReplaceAll(messagewords[k], ",", "")
+		messagewords[k] = strings.ReplaceAll(messagewords[k], ".", "")
+	}
+	for _, messageword := range messagewords {
+		fmt.Println(messageword)
+	}
+}
+
+func panix() {
 	// Understanding panics
 	tstarr := [...]int{80, 90, 45}
 	rand.Seed(time.Now().UnixNano())
@@ -250,7 +272,5 @@ func main() {
 	}()
 
 	fmt.Println(tstarr[ari])
-
-	//
 
 }
