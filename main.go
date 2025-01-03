@@ -243,19 +243,7 @@ func main() {
 	message := `In an ancient world, where skies shimmered purple, a purple young girl named Elara lived.
 				She discovered an ancient purple map, hidden in her purple attic, leading to an unknown treasure.
 				Brimming with excitement, Elara embarked on her journey, accompanied by her loyal dog, Max.`
-
-	//wordcount := make(map[string]int)
-	messagewords := strings.Split(message, " ")
-	for k := 0; k < len(messagewords); k++ {
-		messagewords[k] = strings.ToLower(messagewords[k])
-		messagewords[k] = strings.ReplaceAll(messagewords[k], " ", "")
-		messagewords[k] = strings.ReplaceAll(messagewords[k], "\t", "")
-		messagewords[k] = strings.ReplaceAll(messagewords[k], ",", "")
-		messagewords[k] = strings.ReplaceAll(messagewords[k], ".", "")
-	}
-	for _, messageword := range messagewords {
-		fmt.Println(messageword)
-	}
+	PrintWordCount(CountWordsOccurence(message))
 }
 
 func panix() {
@@ -270,7 +258,27 @@ func panix() {
 			fmt.Println("A panic has occurred. This function recovers it")
 		}
 	}()
-
 	fmt.Println(tstarr[ari])
+}
 
+func PrintWordCount(wordcounts map[string]int) {
+	for key, value := range wordcounts {
+		fmt.Println(key, value)
+	}
+}
+
+func CountWordsOccurence(message string) map[string]int {
+	wordcounts := map[string]int{}
+	messagewords := strings.Split(message, " ")
+	for k := 0; k < len(messagewords); k++ {
+		messagewords[k] = strings.ToLower(messagewords[k])
+		messagewords[k] = strings.ReplaceAll(messagewords[k], " ", "")
+		messagewords[k] = strings.ReplaceAll(messagewords[k], "\t", "")
+		messagewords[k] = strings.ReplaceAll(messagewords[k], ",", "")
+		messagewords[k] = strings.ReplaceAll(messagewords[k], ".", "")
+	}
+	for _, messageword := range messagewords {
+		wordcounts[messageword]++
+	}
+	return wordcounts
 }
