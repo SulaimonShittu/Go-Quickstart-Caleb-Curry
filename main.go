@@ -244,7 +244,35 @@ func main() {
 				She discovered an ancient purple map, hidden in her purple attic, leading to an unknown treasure.
 				Brimming with excitement, Elara embarked on her journey, accompanied by her loyal dog, Max.`
 	PrintWordCount(CountWordsOccurence(message))
+
+	//Structs
+	point1 := Point{10.5, 7.5}
+	point2 := Point{10.2, 9}
+	pointslice := []Point{point1, point2}
+	fmt.Println(pointslice[0].y)
+
+	fmt.Println("The bigger one is : ", point1.CompareTo(point2))
 }
+
+// understanding structs & methods
+
+type Point struct {
+	x, y float64
+}
+
+func (p Point) Abs() float64 {
+	return math.Sqrt(math.Pow(p.x, 2) + math.Pow(p.y, 2))
+}
+
+func (p Point) CompareTo(other Point) Point {
+	if p.Abs() > other.Abs() {
+		return p
+	} else {
+		return other
+	}
+}
+
+//understanding panics
 
 func panix() {
 	// Understanding panics
@@ -260,6 +288,8 @@ func panix() {
 	}()
 	fmt.Println(tstarr[ari])
 }
+
+// understanding functions
 
 func PrintWordCount(wordcounts map[string]int) {
 	for key, value := range wordcounts {
