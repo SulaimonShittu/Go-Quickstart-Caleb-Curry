@@ -260,10 +260,13 @@ type Point struct {
 	x, y float64
 }
 
+func (po Point) String() string {
+	return fmt.Sprintf("(%.2f, %.2f)", po.x, po.y)
+}
+
 func (p Point) Abs() float64 {
 	return math.Sqrt(math.Pow(p.x, 2) + math.Pow(p.y, 2))
 }
-
 func (p Point) CompareTo(other Point) Point {
 	if p.Abs() > other.Abs() {
 		return p
