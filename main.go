@@ -6,6 +6,7 @@ import (
 	"math"
 	"math/rand"
 	"os"
+	"sort"
 	"strconv"
 	"strings"
 	"time"
@@ -252,6 +253,18 @@ func main() {
 	fmt.Println(pointslice[0].y)
 
 	fmt.Println("The bigger one is : ", point1.CompareTo(point2))
+	fmt.Println(point1)
+
+	collPoints := Points{
+		{10, 4},
+		{8, 6},
+		{1, 4},
+		{2, 3},
+		{1, 2},
+		{2, 5},
+	}
+	sort.Sort(collPoints)
+	fmt.Println(collPoints)
 }
 
 // understanding structs & methods
@@ -273,6 +286,26 @@ func (p Point) CompareTo(other Point) Point {
 	} else {
 		return other
 	}
+}
+
+// interfaces cont
+type Points []Point
+
+func (points Points) Len() int {
+	return len(points)
+}
+func (points Points) Less(i, j int) bool {
+	return points[i].Abs() < points[j].Abs()
+}
+func (points Points) Swap(i, j int) {
+	points[i], points[j] = points[j], points[i]
+}
+func (points Points) String() string {
+	str := ""
+	for _, i2 := range points {
+		str += i2.String() + " : " + fmt.Sprintf("%f", i2.Abs()) + "\n"
+	}
+	return str
 }
 
 //understanding panics
