@@ -265,12 +265,38 @@ func main() {
 	}
 	sort.Sort(collPoints)
 	fmt.Println(collPoints)
+
+	//interface & Polymorphism example
+	pointco := Magnitudes{
+		Point{2, 9},
+		Point{8, 4},
+		Point{1, 2},
+		Point{4, 1},
+		PointXYZ{3, 4, 9},
+		PointXYZ{1, 9, 4},
+		PointXYZ{3, 8, 1},
+	}
+	sort.Sort(pointco)
+
+	for _, value := range pointco {
+		fmt.Print("%s ", value)
+	}
 }
 
 // understanding structs & methods
 
 type Point struct {
 	x, y float64
+}
+type PointXYZ struct {
+	x, y, z float64
+}
+
+func (p PointXYZ) Abs() float64 {
+	return math.Sqrt(math.Pow(p.x, 2) + math.Pow(p.y, 2) + math.Pow(p.z, 2))
+}
+func (po PointXYZ) String() string {
+	return fmt.Sprintf("(%.2f, %.2f, %.2f)", po.x, po.y, po.z)
 }
 
 func (po Point) String() string {
@@ -286,6 +312,22 @@ func (p Point) CompareTo(other Point) Point {
 	} else {
 		return other
 	}
+}
+
+// Using interfaces to achieve polymorphism
+type Magnitude interface {
+	Abs() float64
+}
+type Magnitudes []Magnitude
+
+func (m Magnitudes) Len() int {
+	return len(m)
+}
+func (m Magnitudes) Less(i, j int) bool {
+	return m[i].Abs() < m[j].Abs()
+}
+func (m Magnitudes) Swap(i, j int) {
+	m[i], m[j] = m[j], m[i]
 }
 
 // interfaces cont
