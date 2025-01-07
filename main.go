@@ -1,6 +1,7 @@
 package main
 
 import (
+	"Go-Quickstart-Caleb-Curry/points"
 	"bufio"
 	"fmt"
 	"math"
@@ -17,13 +18,13 @@ func main() {
 	fmt.Println("Hello World!")
 
 	// Variable declarations/assignments & types
-	var points int
-	points = 5
-	fmt.Println(points)
-	points2 := 45
-	fmt.Println(points2)
-	points2 = 50
-	fmt.Println(points2)
+	var poi int
+	poi = 5
+	fmt.Println(poi)
+	poi2 := 45
+	fmt.Println(poi2)
+	poi2 = 50
+	fmt.Println(poi2)
 
 	const age = 20
 	fmt.Println(age)
@@ -247,107 +248,40 @@ func main() {
 	PrintWordCount(CountWordsOccurence(message))
 
 	//Structs
-	point1 := Point{10.5, 7.5}
-	point2 := Point{10.2, 9}
-	pointslice := []Point{point1, point2}
-	fmt.Println(pointslice[0].y)
+	point1 := points.Point{X: 7.4, Y: 3.4}
+	point2 := points.Point{X: 10.2, Y: 9}
+	pointslice := []points.Point{point1, point2}
+	fmt.Println(pointslice[0].Y)
 
 	fmt.Println("The bigger one is : ", point1.CompareTo(point2))
 	fmt.Println(point1)
 
-	collPoints := Points{
-		{10, 4},
-		{8, 6},
-		{1, 4},
-		{2, 3},
-		{1, 2},
-		{2, 5},
+	collPoints := points.Magnitudes{
+		points.Point{X: 8, Y: 6},
+		points.Point{X: 2, Y: 1},
+		points.Point{X: 9, Y: 5},
+		points.Point{X: 1, Y: 2},
+		points.Point{X: 3, Y: 1},
+		points.Point{X: 5, Y: 4},
 	}
 	sort.Sort(collPoints)
 	fmt.Println(collPoints)
 
 	//interface & Polymorphism example
-	pointco := Magnitudes{
-		Point{2, 9},
-		Point{8, 4},
-		Point{1, 2},
-		Point{4, 1},
-		PointXYZ{3, 4, 9},
-		PointXYZ{1, 9, 4},
-		PointXYZ{3, 8, 1},
+	pointco := points.Magnitudes{
+		points.Point{X: 2, Y: 9},
+		points.Point{X: 8, Y: 4},
+		points.Point{X: 1, Y: 2},
+		points.Point{X: 4, Y: 1},
+		points.PointXYZ{X: 3, Y: 4, Z: 9},
+		points.PointXYZ{X: 1, Y: 9, Z: 4},
+		points.PointXYZ{X: 3, Y: 8, Z: 1},
 	}
 	sort.Sort(pointco)
 
 	for _, value := range pointco {
 		fmt.Print("%s ", value)
 	}
-}
-
-// understanding structs & methods
-
-type Point struct {
-	x, y float64
-}
-type PointXYZ struct {
-	x, y, z float64
-}
-
-func (p PointXYZ) Abs() float64 {
-	return math.Sqrt(math.Pow(p.x, 2) + math.Pow(p.y, 2) + math.Pow(p.z, 2))
-}
-func (po PointXYZ) String() string {
-	return fmt.Sprintf("(%.2f, %.2f, %.2f)", po.x, po.y, po.z)
-}
-
-func (po Point) String() string {
-	return fmt.Sprintf("(%.2f, %.2f)", po.x, po.y)
-}
-
-func (p Point) Abs() float64 {
-	return math.Sqrt(math.Pow(p.x, 2) + math.Pow(p.y, 2))
-}
-func (p Point) CompareTo(other Point) Point {
-	if p.Abs() > other.Abs() {
-		return p
-	} else {
-		return other
-	}
-}
-
-// Using interfaces to achieve polymorphism
-type Magnitude interface {
-	Abs() float64
-}
-type Magnitudes []Magnitude
-
-func (m Magnitudes) Len() int {
-	return len(m)
-}
-func (m Magnitudes) Less(i, j int) bool {
-	return m[i].Abs() < m[j].Abs()
-}
-func (m Magnitudes) Swap(i, j int) {
-	m[i], m[j] = m[j], m[i]
-}
-
-// interfaces cont
-type Points []Point
-
-func (points Points) Len() int {
-	return len(points)
-}
-func (points Points) Less(i, j int) bool {
-	return points[i].Abs() < points[j].Abs()
-}
-func (points Points) Swap(i, j int) {
-	points[i], points[j] = points[j], points[i]
-}
-func (points Points) String() string {
-	str := ""
-	for _, i2 := range points {
-		str += i2.String() + " : " + fmt.Sprintf("%f", i2.Abs()) + "\n"
-	}
-	return str
 }
 
 //understanding panics
