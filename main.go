@@ -280,8 +280,15 @@ func main() {
 	sort.Sort(pointco)
 
 	for _, value := range pointco {
-		fmt.Print("%s ", value)
+		fmt.Printf("%s\t", value)
 	}
+	fmt.Println()
+
+	// Basics of pointers
+	class := 300
+	ptr := &class
+	fmt.Println(*ptr)
+
 }
 
 //understanding panics
