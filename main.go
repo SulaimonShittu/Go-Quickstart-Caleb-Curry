@@ -288,7 +288,14 @@ func main() {
 	class := 300
 	ptr := &class
 	fmt.Println(*ptr)
+	*ptr = 400
+	fmt.Println(class)
+}
 
+func swap(x, y *int) {
+	fmt.Println("Inside the function, before swap", *x, *y)
+	*x, *y = *y, *x
+	fmt.Println("Inside the function, after swap", *x, *y)
 }
 
 //understanding panics
