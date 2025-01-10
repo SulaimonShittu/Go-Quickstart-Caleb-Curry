@@ -290,12 +290,39 @@ func main() {
 	fmt.Println(*ptr)
 	*ptr = 400
 	fmt.Println(class)
+
+	xx, yy := 5, 10
+	swap(&xx, &yy)
+	fmt.Println("xx is : ", xx, "yy is : ", yy)
+
+	valpoint := points.Point{X: 3, Y: 7}
+	pntrpoint := &valpoint
+
+	fmt.Println(pntrpoint)
+	ModifyPoint(pntrpoint)
+	fmt.Println(pntrpoint)
+
+	intarr := [...]int{1, 2, 10}
+	ModifyArray(&intarr)
+	fmt.Println(intarr)
+	ModifySlice(intarr[:])
+	fmt.Println(intarr)
 }
 
 func swap(x, y *int) {
 	fmt.Println("Inside the function, before swap", *x, *y)
 	*x, *y = *y, *x
 	fmt.Println("Inside the function, after swap", *x, *y)
+}
+
+func ModifyPoint(p *points.Point) {
+	p.X = 3000
+}
+func ModifyArray(arr *[3]int) {
+	arr[0] = 5000
+}
+func ModifySlice(sli []int) {
+	sli[0] = 233
 }
 
 //understanding panics
