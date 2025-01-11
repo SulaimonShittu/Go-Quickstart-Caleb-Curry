@@ -26,6 +26,7 @@ func main() {
 	poi2 = 50
 	fmt.Println(poi2)
 
+	FizzBuzz(15)
 	const age = 20
 	fmt.Println(age)
 
@@ -364,4 +365,23 @@ func CountWordsOccurence(message string) map[string]int {
 		wordcounts[messageword]++
 	}
 	return wordcounts
+}
+
+func FizzBuzz(stop int) {
+	for i := 1; i < stop; i++ {
+		if i%3 == 0 {
+			fmt.Print("Fizz", " ")
+			continue
+		}
+		if i%5 == 0 {
+			fmt.Print("Buzz", " ")
+			continue
+		}
+		if i%5 == 0 && i%3 == 0 {
+			fmt.Print("FizzBuzz", " ")
+			continue
+		}
+		fmt.Print(i, " ")
+	}
+	fmt.Println()
 }
