@@ -367,6 +367,7 @@ func CountWordsOccurence(message string) map[string]int {
 	return wordcounts
 }
 
+// Fizzbuzz
 func FizzBuzz(stop int) {
 	for i := 1; i < stop; i++ {
 		if i%3 == 0 {
