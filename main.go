@@ -308,6 +308,15 @@ func main() {
 	fmt.Println(intarr)
 	ModifySlice(intarr[:])
 	fmt.Println(intarr)
+
+	//Goroutines
+	go Greet("Big Sula")
+	time.Sleep(5 * time.Second)
+}
+
+func Greet(name string) {
+	time.Sleep(3 * time.Second)
+	fmt.Println("hello", name)
 }
 
 func swap(x, y *int) {
