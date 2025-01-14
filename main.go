@@ -314,8 +314,11 @@ func main() {
 	time.Sleep(5 * time.Second)
 }
 
+//function Go-routine
+
 func Greet(name string) {
 	time.Sleep(3 * time.Second)
+	fmt.Println("3 seconds elapsed.")
 	fmt.Println("hello", name)
 }
 
