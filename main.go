@@ -310,16 +310,18 @@ func main() {
 	fmt.Println(intarr)
 
 	//Goroutines
-	go Greet("Big Sula")
+	channel := make(chan string)
+	go Greet("Big Sula", channel)
+	mssg := <-channel
+	fmt.Println(mssg)
 	time.Sleep(5 * time.Second)
 }
 
 //function Go-routine
 
-func Greet(name string) {
+func Greet(name string, channel chan string) {
 	time.Sleep(3 * time.Second)
-	fmt.Println("3 seconds elapsed.")
-	fmt.Println("hello", name)
+	channel <- fmt.Sprintln("hello", name)
 }
 
 func swap(x, y *int) {
