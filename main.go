@@ -17,6 +17,8 @@ func main() {
 	// Hello World in Go
 	fmt.Println("Hello World!")
 
+	Fib(10)
+
 	// Variable declarations/assignments & types
 	var poi int
 	poi = 5
@@ -358,6 +360,17 @@ func panix() {
 }
 
 // understanding functions
+
+func Fib(data int) {
+	var a, b int = 1, 1
+	for _ = range data {
+		fmt.Print(a, " ")
+		fmt.Print(b, " ")
+		a = a + b
+		b = a + b
+	}
+	fmt.Println()
+}
 
 func PrintWordCount(wordcounts map[string]int) {
 	for key, value := range wordcounts {
