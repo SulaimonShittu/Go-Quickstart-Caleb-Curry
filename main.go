@@ -359,6 +359,10 @@ func panix() {
 	fmt.Println(tstarr[ari])
 }
 
+func Triple(x float64) float64 {
+	return x * x * x
+}
+
 // understanding functions
 
 func Fib(data int) {
