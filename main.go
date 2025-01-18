@@ -363,6 +363,10 @@ func Triple(x float64) float64 {
 	return x * x * x
 }
 
+func TripPlus(a, b, c int) int {
+	return a + b + c
+}
+
 // understanding functions
 
 func Fib(data int) {
